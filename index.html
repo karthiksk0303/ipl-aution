@@ -1,62 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>IPL MEGA AUCTION | PRO</title>
+    <title>IPL MEGA AUCTION | HARDCORE</title>
     <style>
-        body { background: #050505; color: #00ff41; font-family: 'Courier New', monospace; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .terminal { border: 1px solid #00ff41; padding: 40px; box-shadow: 0 0 20px #00ff41; background: #000; }
-        input { background: transparent; border: 1px solid #00ff41; color: #00ff41; padding: 10px; margin: 10px; outline: none; }
-        button { background: #00ff41; color: black; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
-        .hidden { display: none; }
+        body { background: #000; color: #ff0000; font-family: 'Courier New'; text-align: center; }
+        .vault { border: 5px double #ff0000; padding: 50px; margin-top: 100px; display: inline-block; }
+        #log { color: #00ffff; margin-top: 20px; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <h1>[!] IPL SECURE BIDDING SYSTEM</h1>
-        <p>PLAYER: LEGENDARY_ENCRYPTED_PLAYER</p>
-        <p>RESERVE PRICE: ₹9,000,000,000</p>
-        <p>YOUR LIQUIDITY: ₹10,000</p>
+    <div class="vault">
+        <h1>SECURE IPL VAULT v4.0</h1>
+        <p>OWNER: KNULL_ADMIN</p>
+        <p>BID REQUIRED: 2^64 (MAX_UINT)</p>
         <hr>
-        <input type="text" id="pass" placeholder="ACCESS KEY">
-        <input type="number" id="bid" placeholder="BID AMOUNT">
-        <br>
-        <button id="auth">EXECUTE TRANSACTION</button>
-        <p id="output"></p>
+        <input type="text" id="k" placeholder="HEX_AUTH_KEY">
+        <button onclick="st()">RUN EXPLOIT</button>
+        <div id="log"></div>
     </div>
 
     <script>
-        // 1. ANTI-DEBUGGER TRAP: If they open F12, it hits an infinite loop of debuggers
-        setInterval(function() {
-            var startTime = performance.now();
-            debugger; 
-            if (performance.now() - startTime > 100) {
-                document.body.innerHTML = "<h1>NICE TRY. TRACKING IP...</h1>";
+        // ANTI-SOURCE & ANTI-DEBUG
+        (function(){
+            var _0x1=function(){var _0x2=true;return function(_0x3,_0x4){var _0x5=_0x2?function(){if(_0x4){var _0x6=_0x4['apply'](_0x3,arguments);_0x4=null;return _0x6;}}:function(){};_0x2=false;return _0x5;};}();
+            var _0x7=_0x1(this,function(){return _0x7['toString']()['search']('(((.+)+)+)+$')['toString']()['constructor'](_0x7)['search']('(((.+)+)+)+$');});_0x7();
+        }());
+
+        // THE FLAG IS ENCRYPTED IN BASE64 CHUNKS + REVERSED
+        const _v1 = "R3N0XzVyX3VwXzFzX2luNXFuM19OMHdfdXJfT1dOM1J9"; // Part 2
+        const _v2 = "UFNOQUNFVEtpUEw="; // Part 1
+
+        function st() {
+            const k = document.getElementById('k').value;
+            const l = document.getElementById('log');
+
+            // Layer 1: Secret Key
+            if (btoa(k) !== "S05VTExfMjAyNg==") { 
+                l.innerText = "INVALID HEX AUTH."; 
+                return; 
             }
-        }, 500);
 
-        // 2. OBFUSCATED FLAG RECONSTRUCTION
-        const _0x4a2 = ["\x50\x53\x4e\x41\x43\x45\x54\x7b", "\x31\x70\x4c\x5f\x31\x73\x5f\x69\x6e\x35\x61\x6e\x33\x5f\x4e\x30\x77\x5f\x75\x72\x5f\x30\x57\x4e\x33\x52\x7d"];
+            // Layer 2: Logical Paradox (BigInt required)
+            // 500 Points: How to input a number that is somehow bigger than its own limit?
+            let b = BigInt("9223372036854775807"); 
+            let target = b + 2n;
 
-        document.getElementById('auth').onclick = function() {
-            const key = document.getElementById('pass').value;
-            const bid = document.getElementById('bid').value;
-            const out = document.getElementById('output');
+            l.innerText = "DECRYPTING CORE...";
 
-            // 3. MULTI-LAYER VALIDATION
-            // They need to find the key 'KNULL_ADMIN' and bypass the math
-            if (key === "KNULL_ADMIN") {
-                if (bid > 9000000000 && bid < 0) { // Mathematical Paradox
-                    out.innerHTML = "GRANTED: " + _0x4a2[0] + _0x4a2[1];
-                } else {
-                    out.innerText = "ERROR: FINANCIAL ANOMALY DETECTED.";
-                }
-            } else {
-                out.innerText = "INVALID ACCESS KEY.";
-            }
-        };
-        
-        // 4. DISABLE RIGHT CLICK
-        document.addEventListener('contextmenu', event => event.preventDefault());
+            setTimeout(() => {
+                // The actual flag reconstruction
+                let f1 = atob(_v2).replace("Ki", "{");
+                let f2 = atob(_v1).replace("R3N0", "1pM");
+                
+                // Final reveal only if they bypassed the logic
+                l.innerHTML = "ACCESS GRANTED: " + f1 + f2;
+            }, 2000);
+        }
+
+        // Disable right click and F12
+        document.onkeydown = function(e) { if(e.keyCode == 123) return false; }
     </script>
 </body>
 </html>
