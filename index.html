@@ -1,64 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>IPL MEGA AUCTION | HARDCORE</title>
+    <meta charset="UTF-8">
+    <title>SECURE VAULT | IPL QUANTUM AUCTION</title>
     <style>
-        body { background: #000; color: #ff0000; font-family: 'Courier New'; text-align: center; }
-        .vault { border: 5px double #ff0000; padding: 50px; margin-top: 100px; display: inline-block; }
-        #log { color: #00ffff; margin-top: 20px; font-size: 0.8rem; }
+        :root {
+            --neon-red: #ff0055;
+            --neon-blue: #00d2ff;
+            --neon-green: #39ff14;
+            --neon-purple: #bc13fe;
+            --bg-black: #050505;
+        }
+
+        body {
+            background: var(--bg-black);
+            color: #fff;
+            font-family: 'Segoe UI', 'Courier New', monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Grids */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: linear-gradient(rgba(0, 210, 255, 0.1) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0, 210, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg);
+            animation: moveGrid 20s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        .main-frame {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--neon-blue);
+            box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);
+            width: 800px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        /* Top Status Bar */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--neon-red);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: var(--neon-red);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .panel {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 5px;
+            margin: 0 0 20px 0;
+            color: #fff;
+            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-blue);
+        }
+
+        .stat-box { margin: 10px 0; font-size: 14px; }
+        .label { color: var(--neon-blue); }
+        .val { color: var(--neon-green); font-weight: bold; }
+
+        input {
+            width: calc(100% - 22px);
+            background: #000;
+            border: 1px solid var(--neon-purple);
+            padding: 10px;
+            color: var(--neon-purple);
+            margin-top: 10px;
+            outline: none;
+            box-shadow: inset 0 0 5px var(--neon-purple);
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            background: transparent;
+            border: 1px solid var(--neon-green);
+            color: var(--neon-green);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* Console Log Feed */
+        #console-log {
+            height: 100px;
+            overflow-y: auto;
+            background: #000;
+            border: 1px solid #333;
+            padding: 10px;
+            font-size: 11px;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        .log-entry { margin: 2px 0; border-left: 2px solid var(--neon-red); padding-left: 5px; }
+
+        .glitch-text { animation: glitch 3s infinite; }
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--neon-red), -2px 0 var(--neon-blue); }
+            50% { text-shadow: -2px 0 var(--neon-red), 2px 0 var(--neon-blue); }
+            100% { text-shadow: 2px 0 var(--neon-red), -2px 0 var(--neon-blue); }
+        }
     </style>
 </head>
 <body>
-    <div class="vault">
-        <h1>SECURE IPL VAULT v4.0</h1>
-        <p>OWNER: KNULL_ADMIN</p>
-        <p>BID REQUIRED: 2^64 (MAX_UINT)</p>
-        <hr>
-        <input type="text" id="k" placeholder="HEX_AUTH_KEY">
-        <button onclick="st()">RUN EXPLOIT</button>
-        <div id="log"></div>
+
+<div class="main-frame">
+    <div class="header">
+        <span>SYSTEM: ONLINE</span>
+        <span>LOCATION: CHENNAI_DC_01</span>
+        <span>ENCRYPTION: AES-256-GCM</span>
     </div>
 
-    <script>
-        // ANTI-SOURCE & ANTI-DEBUG
-        (function(){
-            var _0x1=function(){var _0x2=true;return function(_0x3,_0x4){var _0x5=_0x2?function(){if(_0x4){var _0x6=_0x4['apply'](_0x3,arguments);_0x4=null;return _0x6;}}:function(){};_0x2=false;return _0x5;};}();
-            var _0x7=_0x1(this,function(){return _0x7['toString']()['search']('(((.+)+)+)+$')['toString']()['constructor'](_0x7)['search']('(((.+)+)+)+$');});_0x7();
-        }());
+    <h1 class="glitch-text">IPL QUANTUM VAULT v5.0</h1>
 
-        // THE FLAG IS ENCRYPTED IN BASE64 CHUNKS + REVERSED
-        const _v1 = "R3N0XzVyX3VwXzFzX2luNXFuM19OMHdfdXJfT1dOM1J9"; // Part 2
-        const _v2 = "UFNOQUNFVEtpUEw="; // Part 1
+    <div class="dashboard">
+        <div class="panel">
+            <h3 style="color: var(--neon-red); margin-top: 0;">TARGET_DATA</h3>
+            <div class="stat-box"><span class="label">PLAYER:</span> <span class="val">LEGENDARY_REACH_PLAYER</span></div>
+            <div class="stat-box"><span class="label">BASE_BID:</span> <span class="val">9.22e18</span></div>
+            <div class="stat-box"><span class="label">TEAM_ID:</span> <span class="val">PSNA_KNIGHTS</span></div>
+            <div class="stat-box"><span class="label">STATUS:</span> <span class="val" style="color:var(--neon-red); animation: blink 1s infinite;">ENCRYPTED</span></div>
+        </div>
 
-        function st() {
-            const k = document.getElementById('k').value;
-            const l = document.getElementById('log');
+        <div class="panel">
+            <h3 style="color: var(--neon-purple); margin-top: 0;">AUTH_MODULE</h3>
+            <div class="stat-box">USER: <span class="val">KNULL_HACKER</span></div>
+            <input type="text" id="k" placeholder="ENTER ACCESS_KEY">
+            <button onclick="st()">EXECUTE_EXPLOIT.SH</button>
+        </div>
+    </div>
 
-            // Layer 1: Secret Key
-            if (btoa(k) !== "S05VTExfMjAyNg==") { 
-                l.innerText = "INVALID HEX AUTH."; 
-                return; 
-            }
+    <div id="console-log">
+        <div class="log-entry">[SYSTEM] Initializing auction protocols...</div>
+        <div class="log-entry">[SECURITY] Intrusion detection active...</div>
+        <div class="log-entry">[INFO] Connect to node 0x77ae...</div>
+    </div>
+</div>
 
-            // Layer 2: Logical Paradox (BigInt required)
-            // 500 Points: How to input a number that is somehow bigger than its own limit?
-            let b = BigInt("9223372036854775807"); 
-            let target = b + 2n;
+<script>
+    // Hidden Flag Logic
+    const _v1 = "R3N0XzVyX3VwXzFzX2luNXFuM19OMHdfdXJfT1dOM1J9"; 
+    const _v2 = "UFNOQUNFVEtpUEw="; 
 
-            l.innerText = "DECRYPTING CORE...";
+    function addLog(text) {
+        const log = document.getElementById('console-log');
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        entry.innerText = `[${new Date().toLocaleTimeString()}] ${text}`;
+        log.prepend(entry);
+    }
 
-            setTimeout(() => {
-                // The actual flag reconstruction
-                let f1 = atob(_v2).replace("Ki", "{");
-                let f2 = atob(_v1).replace("R3N0", "1pM");
-                
-                // Final reveal only if they bypassed the logic
-                l.innerHTML = "ACCESS GRANTED: " + f1 + f2;
-            }, 2000);
+    function st() {
+        const k = document.getElementById('k').value;
+        addLog("Attempting authentication...");
+
+        if (btoa(k) !== "S05VTExfMjAyNg==") { 
+            addLog("CRITICAL ERROR: ACCESS DENIED.");
+            return; 
         }
 
-        // Disable right click and F12
-        document.onkeydown = function(e) { if(e.keyCode == 123) return false; }
-    </script>
+        addLog("Auth success. Bypassing bidding gate...");
+        addLog("Injecting BigInt overflow...");
+
+        setTimeout(() => {
+            let f1 = atob(_v2).replace("Ki", "{");
+            let f2 = atob(_v1).replace("R3N0", "1pM");
+            addLog("FLAG RECONSTRUCTED SUCCESSFULLY.");
+            
+            // Show result in a stylish alert or the console log
+            alert("VAULT BREACHED: " + f1 + f2);
+        }, 1500);
+    }
+
+    // Anti-F12
+    document.onkeydown = function(e) { if(e.keyCode == 123) return false; }
+    document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+
 </body>
 </html>
