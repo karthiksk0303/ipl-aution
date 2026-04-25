@@ -1,144 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IPL MEGA AUCTION | 2026</title>
+    <title>IPL MEGA AUCTION | PRO</title>
     <style>
-        :root {
-            --neon-cyan: #00f2ff;
-            --neon-red: #ff0055;
-            --bg-dark: #0b0e14;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--neon-cyan);
-            font-family: 'Courier New', monospace;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-            border: 2px solid var(--neon-red);
-        }
-
-        .auction-container {
-            text-align: center;
-            padding: 40px;
-            border: 3px solid var(--neon-cyan);
-            box-shadow: 0 0 20px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
-            background: rgba(0, 0, 0, 0.8);
-            max-width: 500px;
-            width: 90%;
-        }
-
-        h1 {
-            color: var(--neon-red);
-            text-shadow: 0 0 10px var(--neon-red);
-            letter-spacing: 5px;
-            margin-bottom: 30px;
-        }
-
-        .stats {
-            text-align: left;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .stat-line { margin: 10px 0; }
-        .highlight { color: white; font-weight: bold; }
-
-        input {
-            background: #1a1a1a;
-            border: 1px solid var(--neon-cyan);
-            color: white;
-            padding: 12px;
-            width: 80%;
-            margin-bottom: 20px;
-            outline: none;
-            text-align: center;
-        }
-
-        button {
-            background: transparent;
-            color: var(--neon-red);
-            border: 2px solid var(--neon-red);
-            padding: 10px 30px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        button:hover {
-            background: var(--neon-red);
-            color: white;
-            box-shadow: 0 0 15px var(--neon-red);
-        }
-
-        #msg {
-            margin-top: 25px;
-            min-height: 20px;
-            word-wrap: break-word;
-        }
-
-        .glitch { animation: glitch 1s linear infinite; }
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
-        }
+        body { background: #050505; color: #00ff41; font-family: 'Courier New', monospace; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .terminal { border: 1px solid #00ff41; padding: 40px; box-shadow: 0 0 20px #00ff41; background: #000; }
+        input { background: transparent; border: 1px solid #00ff41; color: #00ff41; padding: 10px; margin: 10px; outline: none; }
+        button { background: #00ff41; color: black; border: none; padding: 10px 20px; cursor: pointer; font-weight: bold; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-
-    <div class="auction-container">
-        <h1 class="glitch">IPL AUCTION</h1>
-        <div class="stats">
-            <div class="stat-line">PLAYER: <span class="highlight">LEGENDARY FLAG PLAYER</span></div>
-            <div class="stat-line">CURRENT BID: ₹<span class="highlight" id="curBid">100,000,000</span></div>
-            <div class="stat-line">YOUR BUDGET: ₹<span class="highlight" id="curBal">10,000,000</span></div>
-        </div>
-
-        <hr style="border: 1px solid var(--neon-red); margin-bottom: 20px;">
-
-        <input type="number" id="userBid" placeholder="ENTER BID AMOUNT">
+    <div class="terminal">
+        <h1>[!] IPL SECURE BIDDING SYSTEM</h1>
+        <p>PLAYER: LEGENDARY_ENCRYPTED_PLAYER</p>
+        <p>RESERVE PRICE: ₹9,000,000,000</p>
+        <p>YOUR LIQUIDITY: ₹10,000</p>
+        <hr>
+        <input type="text" id="pass" placeholder="ACCESS KEY">
+        <input type="number" id="bid" placeholder="BID AMOUNT">
         <br>
-        <button onclick="processBid()">PLACE BID</button>
-
-        <div id="msg"></div>
+        <button id="auth">EXECUTE TRANSACTION</button>
+        <p id="output"></p>
     </div>
 
     <script>
-        // Internal variables hidden from the HTML but accessible via Console
-        let budget = 10000000;
-        let minBid = 100000000;
-
-        function processBid() {
-            const userInp = document.getElementById('userBid').value;
-            const bid = parseInt(userInp);
-            const display = document.getElementById('msg');
-
-            // THE CHALLENGE LOGIC:
-            // This condition is mathematically impossible to satisfy via standard input.
-            // 1. Bid must be greater than 100 million.
-            // 2. Bid must be less than or equal to 10 million.
-            
-            if (bid > minBid && bid <= budget) {
-                display.style.color = "#39ff14"; // Neon Green
-                display.innerHTML = "SUCCESS! PLAYER PURCHASED. <br><br>FLAG: PSNACET{1pL_1s_in5an3_N0w_ur_0WN3R}";
-            } else {
-                display.style.color = var(--neon-red);
-                display.innerText = "TRANSACTION FAILED: INSUFFICIENT FUNDS OR BID TOO LOW.";
+        // 1. ANTI-DEBUGGER TRAP: If they open F12, it hits an infinite loop of debuggers
+        setInterval(function() {
+            var startTime = performance.now();
+            debugger; 
+            if (performance.now() - startTime > 100) {
+                document.body.innerHTML = "<h1>NICE TRY. TRACKING IP...</h1>";
             }
-        }
+        }, 500);
 
-        console.log("%c CTF HINT: %c Is the logic truly impossible, or can you redefine the 'budget'?", "color: red; font-weight: bold;", "color: cyan;");
+        // 2. OBFUSCATED FLAG RECONSTRUCTION
+        const _0x4a2 = ["\x50\x53\x4e\x41\x43\x45\x54\x7b", "\x31\x70\x4c\x5f\x31\x73\x5f\x69\x6e\x35\x61\x6e\x33\x5f\x4e\x30\x77\x5f\x75\x72\x5f\x30\x57\x4e\x33\x52\x7d"];
+
+        document.getElementById('auth').onclick = function() {
+            const key = document.getElementById('pass').value;
+            const bid = document.getElementById('bid').value;
+            const out = document.getElementById('output');
+
+            // 3. MULTI-LAYER VALIDATION
+            // They need to find the key 'KNULL_ADMIN' and bypass the math
+            if (key === "KNULL_ADMIN") {
+                if (bid > 9000000000 && bid < 0) { // Mathematical Paradox
+                    out.innerHTML = "GRANTED: " + _0x4a2[0] + _0x4a2[1];
+                } else {
+                    out.innerText = "ERROR: FINANCIAL ANOMALY DETECTED.";
+                }
+            } else {
+                out.innerText = "INVALID ACCESS KEY.";
+            }
+        };
+        
+        // 4. DISABLE RIGHT CLICK
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 </body>
 </html>
